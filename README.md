@@ -4,8 +4,7 @@
 <div align=center><img width="440" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file/fc.jpg"/></div>
   OLDX多旋翼开发平台（OLDX-FC）是由北京理工大学自动化学院所属《北理云逸科技》团队开发的一个目前国内最完整的免费开源飞控项目，随着国内开源飞控的逐步发展如匿名、
 INF、无名和ACFly飞控的陆续推出，如光流、气压计和GPS等相关算法已经逐步完善，但是相比Pixhawk等国外开源飞控平台的发展和定位仍然有发展空间。OLDX-FC于14年开始对多旋翼飞行器进行研究期间也经历过开源和借鉴的过程，为希望进一步推动国内开源飞控协作开发和
-相互学习、相互分享的趋势，团队将该OLDX-FC转化为开源项目，采用自由捐赠的形式继续发展
-[捐赠地址](https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file/pay.png)
+相互学习、相互分享的趋势，团队将该OLDX-FC转化为开源项目，采用自由捐赠的形式继续发展[捐赠地址](https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file/pay.png)
 。
 项目遵循GPL协议，能自由下载项目PCB进行加工使用但请勿作为商业用途，开源所有飞行控制和组合导航源码，可以进行修改和二次开发。<br><br><br>
 
@@ -119,10 +118,10 @@ rostopic pub -1 /ardrone/land std_msgs/Empty    降落
 ```
 
 使用rosrun rqt_graph rqt_graph能查看ardrone仿真模型的topic节点图：<br>
-<div align=center><img width="300" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros1.jpg"/></div>
+<div align=center><img width="280" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros1.jpg"/></div>
  
 
-##3.2 程序控制开发
+## 3.2 程序控制开发
 
 roslaunch oldx land.launch
 
