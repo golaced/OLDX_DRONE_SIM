@@ -24,6 +24,12 @@ IMAV国际微小型无人机大赛|室外赛第5名|2017
 
 	
 # 2 基本功能介绍
+该项目是一个辅助飞控开发的虚拟仿真环境，其基于ROS和Gazebo实现对四旋翼飞行器的快速仿真，项目基于Ardrone提供的SDK建立运行模块和基本
+的姿态控制、高度控制和位置控制，另外对原始程序进行了修改可以自定义前置和下置相机的角度。通过ROS框架能订阅实时图像信息并开展对于图像
+导航和视觉避障的研究，另外在计算资源足够的前提下可以添加任意多架飞行器并进行集群飞行的仿真。该项目于OLDX-FC可无缝链接，该项目运行的控制
+节点产生的控制能直接实现对飞行器的控制，因此可以实现从仿真到实践的无缝移植，项目已经基于该理念实现在仿真环境中的动平台识别、位姿估计和
+降落并直接在ODroid-Xu4嵌入式处理器上快速部署。
+ 
  
 # 3 软件安装与环境配置
 ## 3.1 Linux配置
@@ -63,7 +69,7 @@ sudo apt-get install ros-indigo-joy ros-indigo-octomap-ros
 ros-indigo-mavlink python-wstool python-catkin-tools protobuf-compiler 
 libgoogle-glog-dev ros-indigo-control-toolbox ros-indigo-mavros 
 ```
-打开终端运行roscore验证ROS系统安装正确，之后将项目(https://pan.baidu.com/s/1GuXCdIKfUrpBHTj5R96flw)
+打开终端运行roscore验证ROS系统安装正确，之后将项目(https://pan.baidu.com/s/1N7BgnEnMO_WuLCMbFMR1jQ)
 目录下的文件加压拷贝到虚拟机home目录下的.gazebo的隐藏文件夹下(如无法看见则在目录下按ctrl+h即可显示隐藏文件夹)，则正确复制后的结果如下：<br>
 <div align=center><img width="440" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/gazebo2.JPG"/></div>
  
@@ -88,7 +94,7 @@ echo $ROS_PACKAGE_PATH
 ```
 roslaunch cvg_sim_gazebo 1.launch
 ```
-<br>
+
 其他测试环境如下：
 
 命令|说明
@@ -116,11 +122,11 @@ rostopic pub -1 /ardrone/land std_msgs/Empty    降落
 <div align=center><img width="300" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros1.jpg"/></div>
  
 
-# 4 测试与开发说明
-roslaunch cvg_sim_gazebo 3.launch
+##3.2 程序控制开发
+
 roslaunch oldx land.launch
 
-# 8 捐赠与项目后续开发计划
+# 4 捐赠与项目后续开发计划
 如果您觉得该项目对您有帮助，也为了更好的项目推进和软硬件更新，如果愿意请通过微信捐赠该项目！
 <div align=center><img width="240" height="300" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file/pay.png"/></div>
 
