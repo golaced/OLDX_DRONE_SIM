@@ -27,7 +27,7 @@ IMAV国际微小型无人机大赛|室外赛第5名|2017
  
 # 3 软件安装与环境配置
 ## 3.1 Linux配置
-推荐使用Vmware虚拟机进行开发，Linux镜像使用Exbot推出的已安装好ROS的indigo 14.04版本(http://blog.exbot.net/archives/1206)。虚拟机安装时建议最少分配40G的空间。
+推荐使用Vmware虚拟机进行开发，Linux镜像使用Exbot推出的已安装好ROS的indigo 14.04版本“http://blog.exbot.net/archives/1206”。虚拟机安装时建议最少分配40G的空间。
 在安装完成后首先执行如下命令解决虚拟机无法上网的问题：
 
 ```
@@ -113,7 +113,7 @@ rostopic pub -1 /ardrone/land std_msgs/Empty    降落
 ```
 
 使用rosrun rqt_graph rqt_graph能查看ardrone仿真模型的topic节点图：<br>
-<div align=center><img width="380" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros1.jpg"/></div>
+<div align=center><img width="300" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros1.jpg"/></div>
  
 
 # 4 测试与开发说明
