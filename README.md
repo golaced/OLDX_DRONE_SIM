@@ -27,8 +27,8 @@ IMAV国际微小型无人机大赛|室外赛第5名|2017
  
 # 3 软件安装与环境配置
 ## 3.1 Linux配置
-推荐使用Vmware虚拟机进行开发，Linux镜像使用Exbot推出的已安装好ROS的indigo 14.04版本“http://blog.exbot.net/archives/1206”。虚拟机安装时建议最少分配40G的空间。
-在安装完成后首先执行如下命令解决虚拟机无法上网的问题：
+推荐使用Vmware虚拟机进行开发，Linux镜像使用Exbot推出的已安装好ROS的indigo 14.04版本(http://blog.exbot.net/archives/1206)
+虚拟机安装时建议最少分配40G的空间。在安装完成后首先执行如下命令解决虚拟机无法上网的问题：
 
 ```
 安装后不能上网的，运行以下命令：sudo ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
@@ -63,8 +63,8 @@ sudo apt-get install ros-indigo-joy ros-indigo-octomap-ros
 ros-indigo-mavlink python-wstool python-catkin-tools protobuf-compiler 
 libgoogle-glog-dev ros-indigo-control-toolbox ros-indigo-mavros 
 ```
-打开终端运行roscore验证ROS系统安装正确，之后将项目(https://pan.baidu.com/s/1GuXCdIKfUrpBHTj5R96flw)。目录下的文件加压拷贝到虚拟机home目录下的.gazebo的隐藏文件夹下(如无法看见则在
-目录下按ctrl+h即可显示隐藏文件夹)，则正确复制后的结果如下：<br>
+打开终端运行roscore验证ROS系统安装正确，之后将项目(https://pan.baidu.com/s/1GuXCdIKfUrpBHTj5R96flw)
+目录下的文件加压拷贝到虚拟机home目录下的.gazebo的隐藏文件夹下(如无法看见则在目录下按ctrl+h即可显示隐藏文件夹)，则正确复制后的结果如下：<br>
 <div align=center><img width="440" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/gazebo2.JPG"/></div>
  
 复制完成后在终端中输入gazebo打开仿真器则不需要重新下载模型文件，在仿真器正确打开后应该出现如下画面而不是黑屏，同时在insert选项下有多个可选择模型：<br>
