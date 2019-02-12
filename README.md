@@ -27,7 +27,7 @@ IMAV国际微小型无人机大赛|室外赛第5名|2017
  
 # 3 软件安装与环境配置
 ## 3.1 Linux配置
-推荐使用Vmware虚拟机进行开发，Linux镜像使用Exbot推出的已安装好ROS的indigo 14.04版本(https://www.baidu.com/link?url=dFOURUNY-Kdknjrxr7W8wN7FxeHOaGDF4YuogodQCot_JPJdGAqR3UOsoKdKg8D8&wd=&eqid=b2050b9100000aad000000045c627bc5),虚拟机安装时建议最少分配40G的空间。
+推荐使用Vmware虚拟机进行开发，Linux镜像使用Exbot推出的已安装好ROS的indigo 14.04版本(http://blog.exbot.net/archives/1206)。虚拟机安装时建议最少分配40G的空间。
 在安装完成后首先执行如下命令解决虚拟机无法上网的问题：
 
 ```
@@ -63,12 +63,11 @@ sudo apt-get install ros-indigo-joy ros-indigo-octomap-ros
 ros-indigo-mavlink python-wstool python-catkin-tools protobuf-compiler 
 libgoogle-glog-dev ros-indigo-control-toolbox ros-indigo-mavros 
 ```
-打开终端运行roscore验证ROS系统安装正确，之后将项目(https://pan.baidu.com/s/1GuXCdIKfUrpBHTj5R96flw)目录下的文件加压拷贝到虚拟机home目录下的.gazebo的隐藏文件夹下(如无法看见则在
+打开终端运行roscore验证ROS系统安装正确，之后将项目(https://pan.baidu.com/s/1GuXCdIKfUrpBHTj5R96flw)。目录下的文件加压拷贝到虚拟机home目录下的.gazebo的隐藏文件夹下(如无法看见则在
 目录下按ctrl+h即可显示隐藏文件夹)，则正确复制后的结果如下：<br>
 <div align=center><img width="440" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/gazebo2.JPG"/></div>
  
-复制完成后在终端中输入gazebo打开仿真器则不需要重新下载模型文件，在仿真器正确打开后应该出现如下画面而不是黑屏，同时在insert选项下有多个
-可选择模型：<br>
+复制完成后在终端中输入gazebo打开仿真器则不需要重新下载模型文件，在仿真器正确打开后应该出现如下画面而不是黑屏，同时在insert选项下有多个可选择模型：<br>
 <div align=center><img width="440" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/gazebo1.JPG"/></div>
  
 在验证仿真环境无误后开始安装本项目所需软件，首先重新建立一个为无人机虚拟模型专用的工作空间：
@@ -91,14 +90,12 @@ roslaunch cvg_sim_gazebo 1.launch
 ```
 <br>
 其他测试环境如下：
-<br>
 
 命令|说明
 -------------|-------------
 1.launch|空白场景
 3.launch|动平台无人机降落
-ardrone_testworld.launch|动平台无人机降落
-
+ardrone_testworld.launch|虚拟小镇和无人机
 
 
 如正确安装则可以看到仿真环境中会出现一个四旋翼飞行器并且地上布置有3个地标，如图所示：<br>
@@ -116,7 +113,7 @@ rostopic pub -1 /ardrone/land std_msgs/Empty    降落
 ```
 
 使用rosrun rqt_graph rqt_graph能查看ardrone仿真模型的topic节点图：<br>
-<div align=center><img width="440" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros1.jpg"/></div>
+<div align=center><img width="380" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros1.jpg"/></div>
  
 
 # 4 测试与开发说明
