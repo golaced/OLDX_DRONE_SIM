@@ -27,8 +27,7 @@ IMAV国际微小型无人机大赛|室外赛第5名|2017
  
 # 3 软件安装与环境配置
 ## 3.1 Linux配置
-推荐使用Vmware虚拟机进行开发，Linux镜像使用Exbot推出的已安装好ROS的indigo 14.04版本(https://www.baidu.com/link?url=dFOURUNY-Kd
-knjrxr7W8wN7FxeHOaGDF4YuogodQCot_JPJdGAqR3UOsoKdKg8D8&wd=&eqid=b2050b9100000aad000000045c627bc5),虚拟机安装时建议最少分配40G的空间。
+推荐使用Vmware虚拟机进行开发，Linux镜像使用Exbot推出的已安装好ROS的indigo 14.04版本(https://www.baidu.com/link?url=dFOURUNY-Kdknjrxr7W8wN7FxeHOaGDF4YuogodQCot_JPJdGAqR3UOsoKdKg8D8&wd=&eqid=b2050b9100000aad000000045c627bc5),虚拟机安装时建议最少分配40G的空间。
 在安装完成后首先执行如下命令解决虚拟机无法上网的问题：
 
 ```
