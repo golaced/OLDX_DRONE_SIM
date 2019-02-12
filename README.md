@@ -63,7 +63,7 @@ sudo apt-get install ros-indigo-joy ros-indigo-octomap-ros
 ros-indigo-mavlink python-wstool python-catkin-tools protobuf-compiler 
 libgoogle-glog-dev ros-indigo-control-toolbox ros-indigo-mavros 
 ```
-打开终端运行roscore验证ROS系统安装正确，之后将项目/zips(https://pan.baidu.com/s/1GuXCdIKfUrpBHTj5R96flw)目录下的文件加压拷贝到虚拟机/home目录下的.gazebo的隐藏文件夹下(如无法看见则在
+打开终端运行roscore验证ROS系统安装正确，之后将项目(https://pan.baidu.com/s/1GuXCdIKfUrpBHTj5R96flw)目录下的文件加压拷贝到虚拟机home目录下的.gazebo的隐藏文件夹下(如无法看见则在
 目录下按ctrl+h即可显示隐藏文件夹)，则正确复制后的结果如下：<br>
 <div align=center><img width="440" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/gazebo2.JPG"/></div>
  
