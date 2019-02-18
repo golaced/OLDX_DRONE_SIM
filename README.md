@@ -153,7 +153,7 @@ Shift+D|机头右转
 
 默认代码下为无人机动平台降落模式，此时需要运行对应的roslaunch cvg_sim_gazebo 3.launch仿真环境，正确运行后仿真环境中除了无人机外还应该存在地标
 降落小车，其上加载了由我们设计的R2D复合地标(由一个缺口圆环地标和二维码组合构成)，同时会显示机载90°和45°两个相机的实时图像和地标识别结果。<br>
-<div align=center><img width="280" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros_land1.JPG"/></div>
+<div align=center><img width="300" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros_land1.JPG"/></div>
  
 <br>
 此时按键空格则飞行器起飞，起飞后动平台则开始移动其运动轨迹可在oldx_serial.cpp函数中修改car_move_sel实现直线或圆形轨迹的选择：<br>
@@ -165,7 +165,7 @@ car_move_sel|说明
 
 在起飞后无人机会自动飞行至动平台后方固定位置(around_dis=3.6 m)进行跟随移动，此时如果输入任意的前后左右移动控制量则会进入自动降落流程，飞行器会
 基于图像信息逐步逼近目标并规划轨迹进行降落，在降落成功后在控制台会打印降落是否成功、降落所耗时间和降落误差等结果：<br>
-<div align=center><img width="280" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros_land2.JPG"/></div>
+<div align=center><img width="300" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros_land2.JPG"/></div>
 <br> 
 在完成降落任务后3.5s 飞行器会重新拉升到动平台后方并重新等待自动降落命令。<br>
 目前的程序中已经封装了地面机器人和无人机自动控制的相关API：
@@ -175,7 +175,7 @@ car_contral|float exp_y,float exp_z,float dt,int en_auto_run,float spd,float rad
 exp_y|期望前进速度  闭环
 exp_z|期望旋转速度  闭环
 dt|控制周期
-en_auto_run|1为开环速度控制
+en_auto_run|1(开环速度控制)  0(闭环速度控制)
 spd|开环期望速度
 rad|开环期望旋转速度
 
