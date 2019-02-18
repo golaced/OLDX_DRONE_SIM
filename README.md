@@ -4,8 +4,7 @@
 <div align=center><img width="440" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file/fc.jpg"/></div>
   OLDX多旋翼开发平台（OLDX-FC）是由北京理工大学自动化学院所属《北理云逸科技》团队开发的一个目前国内最完整的免费开源飞控项目，随着国内开源飞控的逐步发展如匿名、
 INF、无名和ACFly飞控的陆续推出，如光流、气压计和GPS等相关算法已经逐步完善，但是相比Pixhawk等国外开源飞控平台的发展和定位仍然有发展空间。OLDX-FC于14年开始对多旋翼飞行器进行研究期间也经历过开源和借鉴的过程，为希望进一步推动国内开源飞控协作开发和
-相互学习、相互分享的趋势，团队将该OLDX-FC转化为开源项目，采用自由捐赠的形式继续发展
-[捐赠地址](https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file/pay.png)
+相互学习、相互分享的趋势，团队将该OLDX-FC转化为开源项目，采用自由捐赠的形式继续发展[捐赠地址](https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file/pay.png)
 。
 项目遵循GPL协议，能自由下载项目PCB进行加工使用但请勿作为商业用途，开源所有飞行控制和组合导航源码，可以进行修改和二次开发。<br><br><br>
 
@@ -119,14 +118,108 @@ rostopic pub -1 /ardrone/land std_msgs/Empty    降落
 ```
 
 使用rosrun rqt_graph rqt_graph能查看ardrone仿真模型的topic节点图：<br>
-<div align=center><img width="300" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros1.jpg"/></div>
+<div align=center><img width="280" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros1.jpg"/></div>
  
 
-##3.2 程序控制开发
+## 3.2 程序控制开发
+重新建立一个为无人机控制专用的工作空间：
+```
+mkdir -p ~/catkin_ws_c/src
+cd /catkin_ws_c/src
+catkin_init_workspace
+cd ..
+catkin_make
+source devel/setup.bash
+echo $ROS_PACKAGE_PATH
+```
 
+之后将项目中/src/OLDX_simulator下的文件夹解压至空间文件目录下并用catkin_make进行编译，在编译完成后使用source devel/setup.bash来刷新配置文件并在控制终端中输入：
+```
 roslaunch oldx land.launch
+```
+则系统正常后会在新的控制台打印相关参数，此时既可以通过键盘控制飞行器，相关操控如下表所示：
 
-# 4 捐赠与项目后续开发计划
+键盘|说明
+-------------|-------------
+空格|起飞和降落
+W|前进
+S|后退
+A|向左平飞
+D|向右平飞
+Shift+W|高度上升
+Shift+S|高度下降
+Shift+A|机头左转
+Shift+D|机头右转
+
+默认代码下为无人机动平台降落模式，此时需要运行对应的roslaunch cvg_sim_gazebo 3.launch仿真环境，正确运行后仿真环境中除了无人机外还应该存在地标
+降落小车，其上加载了由我们设计的R2D复合地标(由一个缺口圆环地标和二维码组合构成)，同时会显示机载90°和45°两个相机的实时图像和地标识别结果。<br>
+<div align=center><img width="280" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros_land1.JPG"/></div>
+ 
+<br>
+此时按键空格则飞行器起飞，起飞后动平台则开始移动其运动轨迹可在oldx_serial.cpp函数中修改car_move_sel实现直线或圆形轨迹的选择：<br>
+
+car_move_sel|说明
+-------------|-------------
+0|圆形轨迹
+1|直线轨迹
+
+在起飞后无人机会自动飞行至动平台后方固定位置(around_dis=3.6 m)进行跟随移动，此时如果输入任意的前后左右移动控制量则会进入自动降落流程，飞行器会
+基于图像信息逐步逼近目标并规划轨迹进行降落，在降落成功后在控制台会打印降落是否成功、降落所耗时间和降落误差等结果：<br>
+<div align=center><img width="280" height="280" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file_sim/ros_land2.JPG"/></div>
+<br> 
+在完成降落任务后3.5s 飞行器会重新拉升到动平台后方并重新等待自动降落命令。<br>
+目前的程序中已经封装了地面机器人和无人机自动控制的相关API：
+
+car_contral|float exp_y,float exp_z,float dt,int en_auto_run,float spd,float rad
+-------------|-------------
+exp_y|期望前进速度  闭环
+exp_z|期望旋转速度  闭环
+dt|控制周期
+en_auto_run|1为开环速度控制
+spd|开环期望速度
+rad|开环期望旋转速度
+
+<br>
+
+drone_contral|float exp_x,float exp_y,float exp_z,float exp_yaw,float dt,float limit
+-------------|-------------
+exp_x|期望x轴位置
+exp_y|期望y轴位置
+exp_z|期望z轴位置
+exp_yaw|期望航向角
+dt|控制周期
+limit|速度输出限幅
+
+<br>
+程序中相关ROS节点下状态反馈和机器人控制Topic如下：
+
+Topic|说明
+-------------|-------------
+velocity_cmd_drone.linear|飞行器期望机体线速度
+velocity_cmd_drone.angular|飞行器期望机体角速度
+velocity_cmd_car.linear|小车期望机体线速度
+velocity_cmd_car.angular|小车期望机体角速度、
+velocity_ar_key|按键产生的期望速度
+|
+drone.pose.pose.position|飞行器当前位置
+att_drone|飞行器当前姿态角
+drone.twist.twist.linear|飞行器当前机体线速度
+drone.twist.twist.angular|飞行器当前机角速度
+|
+car.pose.pose.position|小车当前位置
+att_car|小车当前姿态角
+car.twist.twist.linear|小车当前机体线速度
+car.twist.twist.angular|小车当前机体角速度
+
+<br>
+另外可以快速修改宏定义#define EN_AUTO_LAND 1来实现是否使能自动降落程序，上述修改后都需要重新catkin_make来进行编译。如需自己添加
+相应的控制程序和图像导航测试程序可以在oldx_serial.cpp中632行后自行添加相应代码并禁用该宏定义。
+
+# 4 图像导航ROS开发范例(Star>50后更新)
+
+
+
+# 5 捐赠与项目后续开发计划
 如果您觉得该项目对您有帮助，也为了更好的项目推进和软硬件更新，如果愿意请通过微信捐赠该项目！
 <div align=center><img width="240" height="300" src="https://github.com/golaced/OLDX_DRONE_SIM/blob/rmd/support_file/img_file/pay.png"/></div>
 
