@@ -200,12 +200,10 @@ velocity_cmd_drone.angular|飞行器期望机体角速度
 velocity_cmd_car.linear|小车期望机体线速度
 velocity_cmd_car.angular|小车期望机体角速度、
 velocity_ar_key|按键产生的期望速度
-|
 drone.pose.pose.position|飞行器当前位置
 att_drone|飞行器当前姿态角
 drone.twist.twist.linear|飞行器当前机体线速度
 drone.twist.twist.angular|飞行器当前机角速度
-|
 car.pose.pose.position|小车当前位置
 att_car|小车当前姿态角
 car.twist.twist.linear|小车当前机体线速度
