@@ -198,7 +198,7 @@ Topic|说明
 velocity_cmd_drone.linear|飞行器期望机体线速度
 velocity_cmd_drone.angular|飞行器期望机体角速度
 velocity_cmd_car.linear|小车期望机体线速度
-velocity_cmd_car.angular|小车期望机体角速度、
+velocity_cmd_car.angular|小车期望机体角速度
 velocity_ar_key|按键产生的期望速度
 drone.pose.pose.position|飞行器当前位置
 att_drone|飞行器当前姿态角
